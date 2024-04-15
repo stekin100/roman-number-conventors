@@ -61,10 +61,14 @@ Resources:
         pip3 install flask
         dnf install git -y
         cd /home/ec2-user
-        FOLDER="https://raw.githubusercontent.com/awsdevopsteam/roman-number-conventor/main"
+        FOLDER="https://raw.githubusercontent.com/stekin100/roman-number-conventors/main"
         wget -P templates ${FOLDER}/templates/index.html
         wget -P templates ${FOLDER}/templates/result.html
         wget ${FOLDER}/roman-numerals-converter-app.py
         python3 roman-numerals-converter-app.py
-
 Outputs:
+  WebsiteURL:
+    Value: !Sub
+      - http://${PIA}:8080
+      - PIA: !GetAtt WebServerHost.PublicDnsName
+    Description: Roman Numerals Converter Application URL
